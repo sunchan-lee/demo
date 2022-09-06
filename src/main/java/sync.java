@@ -9,13 +9,13 @@ public class sync {
 
         //자주 쓰는 값들 저장
         //private static final String accessKey = "pyMqSv2G7efrPyuaK3Sn";  //NCP 인증키 (맥플러스)
-        //private static final String accessKey = "gIqC4VCzEMPOdHPRlrJn";  //NCP 인증키 (서브)
-        private static final String accessKey = "2C568D35BE126508819B";  //NCP 인증키 (서브)
+        private static final String accessKey = "gIqC4VCzEMPOdHPRlrJn";  //NCP 인증키 (서브)
+        //private static final String accessKey = "2C568D35BE126508819B";  //NCP 인증키 (서브)
 
 
         //private static final String secretKey = "LmppNgYHhAwO5iEOhy6lS8AcRzzdwxYAN5vVvi6E";  //NCP 비밀키 (맥플러스)
-        //private static final String secretKey = "fK1THw3U42JS83GdRfcNWsrF5I19rZXHOvwB5uim";  //NCP 비밀키 (서브)
-        private static final String secretKey = "5FBD470FC8380902DABB2D427C4704F6D1E2E502";  //NCP 비밀키 (서브)
+        private static final String secretKey = "fK1THw3U42JS83GdRfcNWsrF5I19rZXHOvwB5uim";  //NCP 비밀키 (서브)
+        //private static final String secretKey = "5FBD470FC8380902DABB2D427C4704F6D1E2E502";  //NCP 비밀키 (서브)
 
 
         private static String apiDomain = "https://workplace.apigw.ntruss.com";  //api 주소 앞단
@@ -23,10 +23,11 @@ public class sync {
         //private static String companyId = "befbe577-7124-43d5-b75d-aab42d78023c"; // 회사 아이디 (맥플러스)
         private static String companyId = "72fe2107-30bd-48ed-ada4-f06083599921"; // 회사 아이디 (서브)
 
-        private static String externalKey = "3001b183-3bae-46e9-a79c-0660732adacb"; // dev 계정 사원 외부키
+        //private static String externalKey = "3001b183-3bae-46e9-a79c-0660732adacb"; // dev 계정 사원 외부키
+        private static String externalKey = "EMP002"; //서브 외부키
     
         //조직연동 조회 GET
-        private static String apiServer_Get_PlaceBiz = "/organization/apigw/v1/company/"+companyId+"/placebiz"; //사업장
+        private static String apiServer_Get_PlaceBiz = "/organization/apigw/v1/company/"+companyId+"/placebiz/"; //사업장
         private static String apiServer_Get_EmpType = "/organization/apigw/v2/company/"+companyId+"/empType"; //고용형태
         private static String apiServer_Get_Grade = "/organization/apigw/v2/company/"+companyId+"/grade"; //직급
         private static String apiServer_Get_Job = "/organization/apigw/v2/company/"+companyId+"/job"; //직책
@@ -35,7 +36,7 @@ public class sync {
         //private static String apiServer_Get_Addattr = ""; //추가정보   테스트
     
         //조직연동 POST
-        private static String apiServer_Post_PlaceBiz = "/organization/apigw/v1/company/"+companyId+"/placebiz"; //사업장
+        private static String apiServer_Post_PlaceBiz = "/organization/apigw/v1/company/"+companyId+"/placebiz/"+externalKey; //사업장
         private static String apiServer_Post_EmpType = "/organization/apigw/v2/company/"+companyId+"/empType"; //고용형태
         private static String apiServer_Post_Grade = "/organization/apigw/v2/company/"+companyId+"/grade"; //직급
         private static String apiServer_Post_Job = "/organization/apigw/v2/company/"+companyId+"/job"; //직책
@@ -197,6 +198,9 @@ public class sync {
             requestHeaders.put("x-ncp-apigw-timestamp", timestamp);
             requestHeaders.put("x-ncp-iam-access-key", accessKey);
             requestHeaders.put("x-ncp-apigw-signature-v2", signature);
+            requestHeaders.put("Content-Type", "application/x-www-form-urlencoded");
+
+
 
             // api 호출
             String responseBody = ApiUtil.get(apiDomain + apiServer_Get_Emp, requestHeaders);
@@ -207,6 +211,7 @@ public class sync {
             // 결과 변환
             Gson gson = new Gson();
             Map<String, String> map = gson.fromJson(responseBody, Map.class);
+
 
             return responseBody;
         }
@@ -230,10 +235,9 @@ public class sync {
             requestHeaders.put("x-ncp-apigw-timestamp", timestamp);
             requestHeaders.put("x-ncp-iam-access-key", accessKey);
             requestHeaders.put("x-ncp-apigw-signature-v1", signature);
-            requestHeaders.put("Content-type", "application/json");
 
             // RequsetBody 구간 (요청 Body 파라미터) 필수 항목만 
-            Map<String, String> requestBodyMap = new HashMap<String, String>();
+            Map<String, Object> requestBodyMap = new HashMap<String, Object>();
             requestBodyMap.put("placeNm", "맥테스트"); //사업장명
             requestBodyMap.put("corporateNum", "12345678"); //법인번호 또는 대표자 주민번호
             requestBodyMap.put("corporateNm", "맥테스트"); //법인명 또는 상호
@@ -251,9 +255,10 @@ public class sync {
              System.out.println("responseBody 값 : " + responseBody);
              System.out.println("requestHeaders 값 : " + requestHeaders);
              System.out.println("signature 값 : " + signature);
+             System.out.println("requestBody 값 : " + requestBody);
              
 
-            return responseBody;
+            return requestBody;
         }
 
 
@@ -261,13 +266,13 @@ public class sync {
 
         //main class
         public static void main(String[] args) throws Exception {
-             //get_placebiz();
+            //get_placebiz();
             // get_empType();
             // get_job();
             // get_grade();
             // get_department();
-            // get_emp();
-            post_placebiz();
+            //get_emp();
+            //post_placebiz();
         }
 
 
