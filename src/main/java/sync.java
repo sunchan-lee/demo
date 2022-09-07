@@ -25,6 +25,8 @@ public class sync {
 
         //private static String externalKey = "3001b183-3bae-46e9-a79c-0660732adacb"; // dev 계정 사원 외부키
         private static String externalKey = "EMP002"; //서브 외부키
+        //private static String externalKey = "CO001"; //서브 외부키
+
     
         //조직연동 조회 GET
         private static String apiServer_Get_PlaceBiz = "/organization/apigw/v1/company/"+companyId+"/placebiz/"; //사업장
@@ -40,9 +42,15 @@ public class sync {
         private static String apiServer_Post_EmpType = "/organization/apigw/v2/company/"+companyId+"/empType"; //고용형태
         private static String apiServer_Post_Grade = "/organization/apigw/v2/company/"+companyId+"/grade"; //직급
         private static String apiServer_Post_Job = "/organization/apigw/v2/company/"+companyId+"/job"; //직책
-        private static String apiServer_Post_Department = "/organization/apigw/v2/company/"+companyId+"/department"; //부서
+        private static String apiServer_Post_Department = "/organization/apigw/v2/company/"+companyId+"/department/"+"1050"; //부서
         private static String apiServer_Post_Emp = "/organization/apigw/v2/company/"+companyId+"/employee"; //사원
         //private static String apiServer_Post_Addattr = ""; //추가정보   테스트
+
+        //조직연동 PUt
+        private static String apiServer_Put_Department = "/organization/apigw/v2/company/"+companyId+"/department/"+"1008"; //부서
+
+
+        
 
 
         //조직연동 PUT
@@ -235,14 +243,15 @@ public class sync {
             requestHeaders.put("x-ncp-apigw-timestamp", timestamp);
             requestHeaders.put("x-ncp-iam-access-key", accessKey);
             requestHeaders.put("x-ncp-apigw-signature-v1", signature);
+            requestHeaders.put("Content-Type", "application/json;charset=utf-8");
 
             // RequsetBody 구간 (요청 Body 파라미터) 필수 항목만 
-            Map<String, Object> requestBodyMap = new HashMap<String, Object>();
-            requestBodyMap.put("placeNm", "맥테스트"); //사업장명
+            Map<String, String> requestBodyMap = new HashMap<String, String>();
+            requestBodyMap.put("placeNm", "macctest"); //사업장명
             requestBodyMap.put("corporateNum", "12345678"); //법인번호 또는 대표자 주민번호
-            requestBodyMap.put("corporateNm", "맥테스트"); //법인명 또는 상호
+            requestBodyMap.put("corporateNm", "macctest"); //법인명 또는 상호
             requestBodyMap.put("corpRegistNum", "12345678"); //사업자등록번호
-            requestBodyMap.put("bossNm", "맥맥테스트"); //사업장명
+            requestBodyMap.put("bossNm", "macctest"); //사업장명
             requestBodyMap.put("useYn", "Y"); //사용여부
 
             // 결과 변환
@@ -262,6 +271,84 @@ public class sync {
         }
 
 
+        //조직 (부서) PUT 항목
+        public static String put_department() throws Exception{
+            // 헤더 설정
+            // 방법에 따라서 GET, POST 등등 바꿔주면 된다.
+            String timestamp = String.valueOf(Calendar.getInstance().getTimeInMillis());
+            String signature = ApiUtil.makeSignature(accessKey, secretKey, apiServer_Post_Department, "PUT", timestamp);
+
+            // api 주소에 따라서 v1 or v2를 사용해주면 된다.
+            Map<String, String> requestHeaders = new HashMap<>();
+            requestHeaders.put("x-ncp-apigw-timestamp", timestamp);
+            requestHeaders.put("x-ncp-iam-access-key", accessKey);
+            requestHeaders.put("x-ncp-apigw-signature-v2", signature);
+            requestHeaders.put("Content-Type", "application/json;charset=utf-8");
+
+            // RequsetBody 구간 (요청 Body 파라미터) 필수 항목만 
+            Map<String, Object> requestBodyMap = new HashMap<>();
+            requestBodyMap.put("name", "부서"); //
+            requestBodyMap.put("deptExternalKey", "1006"); //
+            requestBodyMap.put("parentDeptExternalKey", "#"); //
+            requestBodyMap.put("dispOrd", "7"); //
+
+            // 결과 변환
+            Gson gson = new Gson();
+            String requestBody = gson.toJson(requestBodyMap);
+            
+             // api 호출
+             String responseBody = ApiUtil.put(apiDomain + apiServer_Put_Department, requestHeaders, requestBody);
+             System.out.println("responseBody 값 : " + responseBody);
+             System.out.println("requestHeaders 값 : " + requestHeaders);
+             System.out.println("signature 값 : " + signature);
+             System.out.println("requestBody 값 : " + requestBody);
+
+             Map<String, String> map = gson.fromJson(responseBody, Map.class);
+             
+            return requestBody;
+        }
+
+         //조직 (부서) POST 항목
+                public static String post_department() throws Exception{
+                    // 헤더 설정
+                    // 방법에 따라서 GET, POST 등등 바꿔주면 된다.
+                    String timestamp = String.valueOf(Calendar.getInstance().getTimeInMillis());
+                    String signature = ApiUtil.makeSignature(accessKey, secretKey, apiServer_Post_Department, "POST", timestamp);
+        
+                    // api 주소에 따라서 v1 or v2를 사용해주면 된다.
+                    Map<String, String> requestHeaders = new HashMap<>();
+                    requestHeaders.put("x-ncp-apigw-timestamp", timestamp);
+                    requestHeaders.put("x-ncp-iam-access-key", accessKey);
+                    requestHeaders.put("x-ncp-apigw-signature-v2", signature);
+                    requestHeaders.put("Content-Type", "application/json;charset=utf-8");
+        
+                    // RequsetBody 구간 (요청 Body 파라미터) 필수 항목만 
+                    Map<String, Object> requestBodyMap = new HashMap<>();
+                    requestBodyMap.put("name", "인사팀"); //
+                    requestBodyMap.put("deptExternalKey", "1050"); //
+                    requestBodyMap.put("parentDeptExternalKey", "1006"); //
+                    requestBodyMap.put("dispOrd", "10"); //
+        
+                    // 결과 변환
+                    Gson gson = new Gson();
+                    String requestBody = gson.toJson(requestBodyMap);
+                    
+                     // api 호출
+                     String responseBody = ApiUtil.post(apiDomain + apiServer_Post_Department, requestHeaders, requestBody);
+                     System.out.println("responseBody 값 : " + responseBody);
+                     System.out.println("requestHeaders 값 : " + requestHeaders);
+                     System.out.println("signature 값 : " + signature);
+                     System.out.println("requestBody 값 : " + requestBody);
+        
+                     Map<String, String> map = gson.fromJson(responseBody, Map.class);
+                     
+                    return requestBody;
+                }
+
+        
+        
+
+
 
 
         //main class
@@ -273,6 +360,9 @@ public class sync {
             // get_department();
             //get_emp();
             //post_placebiz();
+            post_department();
+            //put_department();
+
         }
 
 
