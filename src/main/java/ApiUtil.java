@@ -56,7 +56,6 @@ public class ApiUtil {
     public static String post(String apiUrl, Map<String, String> requestHeaders, String requestBody) {
         HttpURLConnection con = connect(apiUrl);
 
-        //예외처리
         try {
             con.setRequestMethod("POST");
             con.setDoOutput(true);
@@ -66,26 +65,20 @@ public class ApiUtil {
                 con.setRequestProperty(header.getKey(), header.getValue());
             }
 
-            //
             try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
                 wr.write(requestBody.getBytes());
                 wr.flush();
             }
 
-            //응답코드가 httpURLConnection 이랑 일치하면
-            //진행, 틀리다면 에러를 반환
             int responseCode = con.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 return readBody(con.getInputStream());
             } else {
                 return readBody(con.getErrorStream());
             }
-        } catch (IOException e) {         //예외처리 발생시 아래 메시지를 반환
+        } catch (IOException e) {
             throw new RuntimeException("API 요청/응답 예외 발생", e);
-        } finally 
-        {
-        //성공 및 예외처리 발생 상관없이 진행되는 작업
-        //연결 끊기
+        } finally {
             con.disconnect();
         }
     }
