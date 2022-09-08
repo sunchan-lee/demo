@@ -47,7 +47,7 @@ public class sync {
         //private static String apiServer_Post_Addattr = ""; //추가정보   테스트
 
         //조직연동 PUt
-        private static String apiServer_Put_Department = "/organization/apigw/v2/company/"+companyId+"/department/"+"1008"; //부서
+        private static String apiServer_Put_Department = "/organization/apigw/v2/company/"+companyId+"/department/"+"1050"; //부서
 
 
         
@@ -282,7 +282,7 @@ public class sync {
             // 헤더 설정
             // 방법에 따라서 GET, POST 등등 바꿔주면 된다.
             String timestamp = String.valueOf(Calendar.getInstance().getTimeInMillis());
-            String signature = ApiUtil.makeSignature(accessKey, secretKey, apiServer_Post_Department, "PUT", timestamp);
+            String signature = ApiUtil.makeSignature(accessKey, secretKey, apiServer_Put_Department, "PUT", timestamp);
 
             // api 주소에 따라서 v1 or v2를 사용해주면 된다.
             Map<String, String> requestHeaders = new HashMap<>();
@@ -293,23 +293,29 @@ public class sync {
 
             // RequsetBody 구간 (요청 Body 파라미터) 필수 항목만 
             Map<String, Object> requestBodyMap = new HashMap<>();
-            requestBodyMap.put("name", "부서"); //
+            requestBodyMap.put("name", "부서서부"); //
+            requestBodyMap.put("i18nNames", "null"); //
             requestBodyMap.put("deptExternalKey", "1050"); //
-            requestBodyMap.put("parentDeptExternalKey", ""); //
-            requestBodyMap.put("dispOrd", "7"); //
+            requestBodyMap.put("parentDeptExternalKey", "1004"); //
+            requestBodyMap.put("dispOrd", "10"); //
 
             // 결과 변환
             Gson gson = new Gson();
             String requestBody = gson.toJson(requestBodyMap);
             
-             // api 호출
-             String responseBody = ApiUtil.put(apiDomain + apiServer_Put_Department, requestHeaders, requestBody);
-             System.out.println("responseBody 값 : " + responseBody);
-             System.out.println("requestHeaders 값 : " + requestHeaders);
-             System.out.println("signature 값 : " + signature);
-             System.out.println("requestBody 값 : " + requestBody);
+            // api 호출
+            String responseBody = ApiUtil.put(apiDomain + apiServer_Put_Department, requestHeaders, requestBody);
+            System.out.println();
+            System.out.println("responseBody 값 : " + responseBody);
+            System.out.println();
+            System.out.println("requestHeaders 값 : " + requestHeaders);
+            System.out.println();
+            System.out.println("signature 값 : " + signature);
+            System.out.println();
+            System.out.println("requestBody 값 : " + requestBody);
+            System.out.println();
 
-             Map<String, String> map = gson.fromJson(responseBody, Map.class);
+             //Map<String, String> map = gson.fromJson(responseBody, Map.class);
              
             return requestBody;
         }
@@ -409,8 +415,8 @@ public class sync {
             //get_department();
             //get_emp();
             //post_placebiz();
-            post_department();
-            //put_department();
+            //post_department();
+            put_department();
             //post_empType();
 
         }
