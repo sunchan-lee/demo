@@ -27,6 +27,8 @@ public class sync {
         private static String externalKey = "EMP002"; //서브 외부키
         //private static String externalKey = "CO001"; //서브 외부키
 
+        private static String nullValue = null;
+
     
         //조직연동 조회 GET
         private static String apiServer_Get_PlaceBiz = "/organization/apigw/v1/company/"+companyId+"/placebiz/"; //사업장
@@ -42,7 +44,7 @@ public class sync {
         private static String apiServer_Post_EmpType = "/organization/apigw/v2/company/"+companyId+"/empType/"+"EMPTYPE004"; //고용형태
         private static String apiServer_Post_Grade = "/organization/apigw/v2/company/"+companyId+"/grade"; //직급
         private static String apiServer_Post_Job = "/organization/apigw/v2/company/"+companyId+"/job"; //직책
-        private static String apiServer_Post_Department = "/organization/apigw/v2/company/"+companyId+"/department/"+"1051"; //부서
+        private static String apiServer_Post_Department = "/organization/apigw/v2/company/"+companyId+"/department/"+"1052"; //부서
         private static String apiServer_Post_Emp = "/organization/apigw/v2/company/"+companyId+"/employee"; //사원
         //private static String apiServer_Post_Addattr = ""; //추가정보   테스트
 
@@ -292,16 +294,17 @@ public class sync {
             requestHeaders.put("Content-Type", "application/json;charset=utf-8");
 
             // RequsetBody 구간 (요청 Body 파라미터) 필수 항목만 
-            Map<String, Object> requestBodyMap = new HashMap<>();
-            requestBodyMap.put("name", "부서서부"); //
+            Map<String, String> requestBodyMap = new HashMap<>();
+            requestBodyMap.put("name", "인사3팀"); //
             requestBodyMap.put("i18nNames", "null"); //
             requestBodyMap.put("deptExternalKey", "1050"); //
             requestBodyMap.put("parentDeptExternalKey", "1004"); //
-            requestBodyMap.put("dispOrd", "10"); //
+            requestBodyMap.put("dispOrd", "11"); //
 
             // 결과 변환
             Gson gson = new Gson();
             String requestBody = gson.toJson(requestBodyMap);
+
             
             // api 호출
             String responseBody = ApiUtil.put(apiDomain + apiServer_Put_Department, requestHeaders, requestBody);
@@ -315,7 +318,7 @@ public class sync {
             System.out.println("requestBody 값 : " + requestBody);
             System.out.println();
 
-             //Map<String, String> map = gson.fromJson(responseBody, Map.class);
+            //Map<String, String> map = gson.fromJson(responseBody, Map.class);
              
             return requestBody;
         }
@@ -335,11 +338,11 @@ public class sync {
             requestHeaders.put("Content-Type", "application/json;charset=utf-8");
 
             // RequsetBody 구간 (요청 Body 파라미터) 필수 항목만 
-            Map<String, String> requestBodyMap = new HashMap<>();
-            requestBodyMap.put("name", "인사팀22"); //
+            Map<String, Object> requestBodyMap = new HashMap<>();
+            requestBodyMap.put("name", "인사혁신팀"); //
             requestBodyMap.put("i18nNames", null); //
-            requestBodyMap.put("deptExternalKey", "1051"); //
-            requestBodyMap.put("parentDeptExternalKey", "1001"); //
+            requestBodyMap.put("deptExternalKey", "1052"); //
+            requestBodyMap.put("parentDeptExternalKey", "1004"); //
             requestBodyMap.put("dispOrd", "11"); //
 
             // 결과 변환
@@ -415,8 +418,8 @@ public class sync {
             //get_department();
             //get_emp();
             //post_placebiz();
-            //post_department();
-            put_department();
+            post_department();
+            //put_department();
             //post_empType();
 
         }
