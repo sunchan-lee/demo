@@ -1,6 +1,5 @@
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import com.google.gson.Gson;
@@ -15,11 +14,13 @@ public class syncTest {
     private static String companyId = "72fe2107-30bd-48ed-ada4-f06083599921"; // 회사 아이디 (서브)
     private static String apiServer_Post_Department = "/organization/apigw/v2/company/"+companyId+"/department/"+"1052"; //부서
 
+
+
     public static String post_department() throws Exception{
          // 방법에 따라서 GET, POST 등등 바꿔주면 된다.
          String timestamp = String.valueOf(Calendar.getInstance().getTimeInMillis());
          String signature = ApiUtil.makeSignature(accessKey, secretKey, apiServer_Post_Department, "POST", timestamp);
-    
+   
         // 헤더 설정
         Map<String, String> requestHeaders = new HashMap<>();
         requestHeaders.put("x-ncp-apigw-timestamp", timestamp);
@@ -27,20 +28,20 @@ public class syncTest {
         requestHeaders.put("x-ncp-apigw-signature-v2", signature);
         requestHeaders.put("Content-Type", "application/json;charset=utf-8");
 
-        //다국어명 부분
-        Map<String, String> i18nNames = new HashMap<>();
-        i18nNames.put("ko_KR", "인사혁신팀");
-        i18nNames.put("en_US", "HR");
+         //다국어명 부분
+         Map<String, Object> i18nNames = new HashMap<String, Object>();
+         i18nNames.put("ko_KR", "인사혁신팀");
+         i18nNames.put("en_US", "HRNEW");
 
         // RequsetBody 구간 (요청 Body 파라미터) 필수 항목만 
-        Map<String, String> requestBodyMap = new LinkedHashMap<>();
+        Map<String, Object> requestBodyMap = new HashMap<String, Object>();
         requestBodyMap.put("name", "인사혁신팀"); //
-        requestBodyMap.put("i18nNames", "i18nNames"); //
+        requestBodyMap.put("i18nNames", i18nNames); //
         requestBodyMap.put("deptExternalKey", "1052"); //
-        requestBodyMap.put("parentDeptExternalKey", "1004"); //
-        requestBodyMap.put("deptEmailAddress", "sample123@mactest.co.kr"); //
-        //requestBodyMap.put("externalEmailReceiveYn", false); //
-        requestBodyMap.put("dispOrd", "17"); //
+        requestBodyMap.put("parentDeptExternalKey", "1007"); //
+        requestBodyMap.put("deptEmailAddress", "sample1233@mactest.co.kr"); //
+        requestBodyMap.put("externalEmailReceiveYn", false); //
+        requestBodyMap.put("dispOrd", "20"); //
 
         // 결과 변환
         Gson gson = new Gson();

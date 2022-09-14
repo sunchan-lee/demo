@@ -6,8 +6,10 @@ import javax.swing.*;
 //프레임 생성
 public class Frame extends JFrame {
     private JFrame mainFrame;
-    private JLabel headerLabel;
-    private JLabel statusLabel;
+    private JLabel inputLabel;
+    private JLabel tabLabel;
+    private JLabel requestLabel;
+    private JLabel responseLabel;
     private JPanel controlPanel;
     private JTabbedPane pane;
 
@@ -15,15 +17,18 @@ public class Frame extends JFrame {
         prepareGUI();
     }
 
-    public static void main(String[] args) {
-        Frame Frame = new Frame(); 
-        Frame.createdTabbedPane();
-    }
 
-    private void prepareGUI(){
+    public void prepareGUI(){
         mainFrame = new JFrame("Workplace 조직연동"); //타이틀 이름
         mainFrame.setSize(1000,800);    //창 사이즈
         mainFrame.setLayout(new GridLayout(4, 1));  //레이아웃 셋팅
+
+        inputLabel = new JLabel("input label",JLabel.CENTER);
+        tabLabel = new JLabel("tabLabel",JLabel.CENTER);        
+        requestLabel = new JLabel("requestLabel",JLabel.CENTER);
+        responseLabel = new JLabel("responseLabel",JLabel.CENTER);   
+        createdTabbedPane();
+
 
         // 닫기 버튼 눌렀을때 종료
         mainFrame.addWindowListener(new WindowAdapter() {
@@ -31,6 +36,15 @@ public class Frame extends JFrame {
                System.exit(0);
             }        
          });  
+
+         controlPanel = new JPanel();
+         controlPanel.setLayout(new FlowLayout());
+   
+         mainFrame.add(inputLabel);
+         mainFrame.add(tabLabel);
+         mainFrame.add(requestLabel);
+         mainFrame.add(responseLabel);
+
          mainFrame.setVisible(true);  
 
     }
@@ -70,10 +84,11 @@ public class Frame extends JFrame {
         employeeLabel.add(employeePanel);
         tab.addTab("6", employeePanel);
 
-        tab.setVisible(true);
+    }
 
-
-
+    
+    public static void main(String[] args) {
+       new Frame();
     }
 
 
