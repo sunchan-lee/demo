@@ -10,7 +10,6 @@ import java.util.Map;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-
 import org.apache.commons.codec.binary.Base64;
 
 // GET, POST 등등 요청하는 항목

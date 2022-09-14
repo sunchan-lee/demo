@@ -25,12 +25,12 @@ public class syncTest2 {
        requestHeaders.put("x-ncp-apigw-timestamp", timestamp);
        requestHeaders.put("x-ncp-iam-access-key", accessKey);
        requestHeaders.put("x-ncp-apigw-signature-v2", signature);
-       requestHeaders.put("Content-Type", "application/json;charset=utf-8");
+       //requestHeaders.put("Content-Type", "application/json;charset=utf-8");
 
-        //다국어명 부분
-        Map<String, String> i18nNames = new HashMap<String, String>();
-        i18nNames.put("ko_KR", "인사혁신팀");
-        i18nNames.put("en_US", "HRNEW");
+       //다국어명 부분
+       Map<String, String> i18nNames = new HashMap<String, String>();
+       i18nNames.put("ko_KR", "인사혁신팀");
+       i18nNames.put("en_US", "HRNEW");
 
        // RequsetBody 구간 (요청 Body 파라미터) 필수 항목만 
        Map<String, Object> requestBodyMap = new HashMap<String, Object>();
