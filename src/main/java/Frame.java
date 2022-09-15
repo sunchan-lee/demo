@@ -34,13 +34,13 @@ public class Frame extends JFrame {
 		JLabel jl_placeBiz_1 = new JLabel("사업장명");
         JTextField jt_placeBiz_1 = new JTextField(20); //텍스트 필드
 
-        jb_placeBiz_1.setActionCommand("View");
+        jb_placeBiz_1.setActionCommand("plView");
         jb_placeBiz_1.addActionListener(new ButtonClickListener());
 
-		// 2-1-2. 첫번째 탭에 올려질 컴포넌트를 컨테이너(jp1)에 올려야 한다.
-		jp1.add(jb_placeBiz_1); 
-        jp1.add(jl_placeBiz_1);
-        jp1.add(jt_placeBiz_1); //텍스트 필드 추가
+            // 2-1-2. 첫번째 탭에 올려질 컴포넌트를 컨테이너(jp1)에 올려야 한다.
+            jp1.add(jb_placeBiz_1); 
+            jp1.add(jl_placeBiz_1);
+            jp1.add(jt_placeBiz_1); //텍스트 필드 추가
     
 		// 2-2-1. 두번째 탭에 올라갈 컴포넌트
         JButton jb_empType_1 = new JButton("조회");
@@ -50,13 +50,13 @@ public class Frame extends JFrame {
 		JLabel jl_empType_2 = new JLabel("고용형태 노출순서");
         JTextField jt_empType_2 = new JTextField(20); //텍스트 필드
 
-		// 2-2-2. 두번째 탭에 올려질 컴포넌트를 컨테이너(jp2)에 올려야 한다.
-        jp2.add(jb_empType_1);
-        jp2.add(jl_empType_1);
-        jp2.add(jt_empType_1);
-        jp2.add(jc_empType_1);
-        jp2.add(jl_empType_2);
-        jp2.add(jt_empType_2);
+            // 2-2-2. 두번째 탭에 올려질 컴포넌트를 컨테이너(jp2)에 올려야 한다.
+            jp2.add(jb_empType_1);
+            jp2.add(jl_empType_1);
+            jp2.add(jt_empType_1);
+            jp2.add(jc_empType_1);
+            jp2.add(jl_empType_2);
+            jp2.add(jt_empType_2);
 	
 		// 2-3-1. 세번째 탭에 올려질 컴포넌트를 만들어 보자.
 		JRadioButton jrb1 = new JRadioButton("1");

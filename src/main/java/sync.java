@@ -412,7 +412,7 @@ public class sync {
         //main class
         public static void main(String[] args) throws Exception {
             //get_placebiz();
-             //get_empType();
+            //get_empType();
             // get_job();
             // get_grade();
             //get_department();
