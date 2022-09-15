@@ -418,7 +418,7 @@ public class sync {
             //get_department();
             //get_emp();
             //post_placebiz();
-            post_department();
+            //post_department();
             //put_department();
             //post_empType();
 

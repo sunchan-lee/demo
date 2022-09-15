@@ -34,6 +34,9 @@ public class Frame extends JFrame {
 		JLabel jl_placeBiz_1 = new JLabel("사업장명");
         JTextField jt_placeBiz_1 = new JTextField(20); //텍스트 필드
 
+        jb_placeBiz_1.setActionCommand("View");
+        jb_placeBiz_1.addActionListener(new ButtonClickListener());
+
 		// 2-1-2. 첫번째 탭에 올려질 컴포넌트를 컨테이너(jp1)에 올려야 한다.
 		jp1.add(jb_placeBiz_1); 
         jp1.add(jl_placeBiz_1);
@@ -72,9 +75,28 @@ public class Frame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 
-
-        //클릭시 이벤트
 	}
+    //클릭시 이벤트
+    private class ButtonClickListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // TODO Auto-generated method stub
+            String command = e.getActionCommand();
+
+            if (command.equals("View")) {
+                try {
+					sync.get_placebiz();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+            } else {
+                System.out.println("Fail");
+            }
+            
+        }
+        
+    }
 	
 	public static void main(String[] args) {
 		new Frame();
