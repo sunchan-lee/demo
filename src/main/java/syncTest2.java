@@ -21,7 +21,7 @@ public class syncTest2 {
         String signature = ApiUtil.makeSignature(accessKey, secretKey, apiServer_Post_Department, "POST", timestamp);
   
        // 헤더 설정
-       Map<String, String> requestHeaders = new HashMap<String, String>();
+       Map<String, String> requestHeaders = new HashMap<>();
        requestHeaders.put("x-ncp-apigw-timestamp", timestamp);
        requestHeaders.put("x-ncp-iam-access-key", accessKey);
        requestHeaders.put("x-ncp-apigw-signature-v2", signature);
@@ -38,8 +38,8 @@ public class syncTest2 {
        requestBodyMap.put("i18nNames", i18nNames); //
        requestBodyMap.put("deptExternalKey", "1052"); //
        requestBodyMap.put("parentDeptExternalKey", "1007"); //
-       requestBodyMap.put("deptEmailAddress", "sample1233@mactest.co.kr"); //
-       requestBodyMap.put("externalEmailReceiveYn", false); //
+       //requestBodyMap.put("deptEmailAddress", "sample1233@mactest.co.kr"); //
+       //requestBodyMap.put("externalEmailReceiveYn", false); //
        requestBodyMap.put("dispOrd", "20"); //
 
        // 결과 변환
