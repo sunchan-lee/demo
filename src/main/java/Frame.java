@@ -119,10 +119,10 @@ public class Frame extends JFrame {
 
 		// 2-6-1.  탭에 올려질 컴포넌트를 만들어 보자.
         JButton jb_emp_1 = new JButton("조회");
-		JLabel jl_emp_1 = new JLabel("부서명");
+		JLabel jl_emp_1 = new JLabel("사원명");
         JTextField jt_emp_1 = new JTextField(20); //텍스트 필드
         JCheckBox jc_emp_1 = new JCheckBox();   //사용여부
-		JLabel jl_emp_2 = new JLabel("부서 노출순서");
+		JLabel jl_emp_2 = new JLabel("사원 노출순서");
         JTextField jt_emp_2 = new JTextField(20); //텍스트 필드
 
 		jb_emp_1.setActionCommand("emp_View");
