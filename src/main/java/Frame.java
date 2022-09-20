@@ -48,8 +48,13 @@ public class Frame extends JFrame {
 		JLabel jl_empType_2 = new JLabel("고용형태 노출순서");
         JTextField jt_empType_2 = new JTextField(20); //텍스트 필드
 
+		JButton jb_empType_2 = new JButton("입력 값 보여주기");
+
 		jb_empType_1.setActionCommand("empType_View");
         jb_empType_1.addActionListener(new ButtonClickListener());
+
+		jb_empType_2.setActionCommand("empType_View_2");
+        jb_empType_2.addActionListener(new ButtonClickListener());
 
             // 2-2-2. 두번째 탭에 올려질 컴포넌트를 컨테이너(jp2)에 올려야 한다.
             jp2.add(jb_empType_1);
@@ -58,6 +63,8 @@ public class Frame extends JFrame {
             jp2.add(jc_empType_1);
             jp2.add(jl_empType_2);
             jp2.add(jt_empType_2);
+            jp2.add(jb_empType_2);
+
 	
 		// 2-3-1. 세번째 탭에 올려질 컴포넌트를 만들어 보자.
 
@@ -146,7 +153,7 @@ public class Frame extends JFrame {
 
 
     //클릭시 이벤트
-    private class ButtonClickListener implements ActionListener{
+    public class ButtonClickListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
             // TODO Auto-generated method stub
@@ -241,6 +248,16 @@ public class Frame extends JFrame {
         
     }
 	
+
+	//텍스트필드 이벤트 테스트
+	public void actionPerformed(ActionEvent actionEvent){
+		// String getValue = jb
+		// if(actionEvent.getSource() == jb_empType_2){
+
+		// }
+	}
+
+
 	public static void main(String[] args) {
 		new Frame();
 
