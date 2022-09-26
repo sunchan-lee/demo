@@ -50,10 +50,10 @@ public class Frame extends JFrame {
 
 		JButton jb_empType_2 = new JButton("입력 값 보여주기");
 
-		jb_empType_1.setActionCommand("empType_View");
+		jb_empType_1.setActionCommand("empType_View");	//조회 버튼
         jb_empType_1.addActionListener(new ButtonClickListener());
 
-		jb_empType_2.setActionCommand("empType_View_2");
+		jb_empType_2.setActionCommand("empType_View_2"); //입력 텍스트 기반
         jb_empType_2.addActionListener(new ButtonClickListener());
 
             // 2-2-2. 두번째 탭에 올려질 컴포넌트를 컨테이너(jp2)에 올려야 한다.
@@ -168,7 +168,7 @@ public class Frame extends JFrame {
 					e1.printStackTrace();
 				}
             } else {
-                System.out.println("Fail");
+                System.out.println("Fail1");
             }
 
 			//고용형태
@@ -182,7 +182,21 @@ public class Frame extends JFrame {
 				}
 			}
 			else {
-				System.out.println( "Fail");
+				System.out.println( "Fail2");
+			}
+
+			//고용형태조회
+			if (command.equals("empType_View_2")) {
+				try {
+					//String n = jt_empType_1.get
+				}
+				catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			else {
+				System.out.println( "Fail2");
 			}
 
 			//직급
@@ -196,7 +210,7 @@ public class Frame extends JFrame {
 				}
 			}
 			else {
-				System.out.println( "Fail");
+				System.out.println( "Fail3");
 			}
 
 			//직책
@@ -210,7 +224,7 @@ public class Frame extends JFrame {
 				}
 			}
 			else {
-				System.out.println( "Fail");
+				System.out.println( "Fail4");
 			}
 
 			//부서
@@ -224,7 +238,7 @@ public class Frame extends JFrame {
 				}
 			}
 			else {
-				System.out.println( "Fail");
+				System.out.println( "Fail5");
 			}
 
 			//사원
@@ -238,7 +252,7 @@ public class Frame extends JFrame {
 				}
 			}
 			else {
-				System.out.println( "Fail");
+				System.out.println( "Fail6");
 			}
 
 
@@ -249,13 +263,7 @@ public class Frame extends JFrame {
     }
 	
 
-	//텍스트필드 이벤트 테스트
-	public void actionPerformed(ActionEvent actionEvent){
-		// String getValue = jb
-		// if(actionEvent.getSource() == jb_empType_2){
 
-		// }
-	}
 
 
 	public static void main(String[] args) {

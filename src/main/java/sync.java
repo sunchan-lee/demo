@@ -8,22 +8,18 @@ import com.google.gson.Gson;
 public class sync {
 
         //자주 쓰는 값들 저장
-        //private static final String accessKey = "pyMqSv2G7efrPyuaK3Sn";  //NCP 인증키 (맥플러스)
         private static final String accessKey = "gIqC4VCzEMPOdHPRlrJn";  //NCP 인증키 (서브)
         //private static final String accessKey = "2C568D35BE126508819B";  //NCP 인증키 (서브)
 
-
-        //private static final String secretKey = "LmppNgYHhAwO5iEOhy6lS8AcRzzdwxYAN5vVvi6E";  //NCP 비밀키 (맥플러스)
+  
         private static final String secretKey = "fK1THw3U42JS83GdRfcNWsrF5I19rZXHOvwB5uim";  //NCP 비밀키 (서브)
         //private static final String secretKey = "5FBD470FC8380902DABB2D427C4704F6D1E2E502";  //NCP 비밀키 (서브)
 
-
         private static String apiDomain = "https://workplace.apigw.ntruss.com";  //api 주소 앞단
 
-        //private static String companyId = "befbe577-7124-43d5-b75d-aab42d78023c"; // 회사 아이디 (맥플러스)
+
         private static String companyId = "72fe2107-30bd-48ed-ada4-f06083599921"; // 회사 아이디 (서브)
 
-        //private static String externalKey = "3001b183-3bae-46e9-a79c-0660732adacb"; // dev 계정 사원 외부키
         private static String externalKey = "EMP002"; //서브 외부키
         //private static String externalKey = "CO001"; //서브 외부키
 
